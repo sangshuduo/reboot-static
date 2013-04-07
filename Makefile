@@ -1,15 +1,16 @@
 
 CC=gcc
-CFLAGS=-static
+CFLAGS=-Wall
+LDFLAGS=-static
 
-reboot_static: reboot_static.o
-	$(CC) $(CFLAGS) reboot_static.o -o $@
+OBJECTS=reboot_static.o
+SOURCES=reboot_static.c
 
-reboot_static.o: reboot_static.c
-	$(CC) -c reboot_static.c -o $@
+reboot_static: $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(LDFLAGS)
 
 .PHONY:	clean
 
 clean:
-	-rm -f reboot_static *.o
+	-rm -f reboot_static *.o *~
 
